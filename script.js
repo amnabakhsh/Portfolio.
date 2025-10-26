@@ -333,18 +333,11 @@ window.addEventListener("resize", fixVideosOnMobile);
 fixVideosOnMobile();
 
 document.addEventListener('DOMContentLoaded', () => {
-  const portraitVideo = document.getElementById('video-portrait');
-  const landscapeVideo = document.getElementById('video-landscape');
-
-  function playVideos() {
-    portraitVideo.play().catch(() => {});
-    landscapeVideo.play().catch(() => {});
-  }
-
-  // محاولة التشغيل تلقائيًا
-  playVideos();
-
-  // إذا منع المتصفح التشغيل التلقائي، يشغل عند أول نقرة
-  document.addEventListener('click', () => playVideos(), { once: true });
+  const video = document.getElementById('background-video');
+  video.play().catch(() => {
+    // في حال منع المتصفح التشغيل التلقائي، نجرب مرة ثانية عند أول نقرة
+    document.addEventListener('click', () => video.play(), { once: true });
+  });
 });
+
 });
